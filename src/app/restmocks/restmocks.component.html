@@ -1,0 +1,36 @@
+<div class="modal-header">
+  <h3 class="modal-title">Rest Mocks</h3>
+</div>
+<div class="container">
+  <div class="row">
+    <nav class="navbar">
+      <input class="form-control" type="text" name="search">
+    </nav>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Path</th>
+        <th>Verb</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let d of myData | paginate: { itemsPerPage: 10, currentPage: p }">
+        <td>/{{d.reqpath}}</td>
+        <td>{{d.verb}}</td>
+        <td>
+          <button class="btn btn-primary" type="button" (click)="open(d)">Edit</button>
+        </td>
+        <td>
+          <button class="btn btn-primary" type="button" (click)="removeRestMock(d)">Remove</button>
+        </td>
+      </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
