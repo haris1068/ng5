@@ -9,6 +9,8 @@ import {AboutComponent} from './about/about.component';
 import {CreaterestComponent} from './createrest/createrest.component';
 import {HttpClientModule} from '@angular/common/http';
 import {RestmocksComponent} from './restmocks/restmocks.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { UpdateMockComponent } from './update-mock/update-mock.component';
 
 @NgModule({
   declarations: [
@@ -16,17 +18,20 @@ import {RestmocksComponent} from './restmocks/restmocks.component';
     HomeComponent,
     AboutComponent,
     CreaterestComponent,
-    RestmocksComponent
+    RestmocksComponent,
+    UpdateMockComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[UpdateMockComponent]
 })
 export class AppModule {
 }

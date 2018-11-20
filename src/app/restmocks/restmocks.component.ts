@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient, HttpClientModule, HttpParams, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
+import {MatDialog , MatDialogConfig} from '@angular/material';
+import {UpdateMockComponent} from '../update-mock/update-mock.component';
 
 @Component({
   selector: 'app-restmocks',
@@ -9,7 +11,7 @@ import {HttpClient, HttpClientModule, HttpParams, HttpHeaders} from '@angular/co
 export class RestmocksComponent implements OnInit {
   myData: any[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -27,7 +29,12 @@ export class RestmocksComponent implements OnInit {
   }
 
   open(row) {
-    alert('WANT TO EDIT?? HA HA... FINISH OTHER THINGS FIRST!!');
+    console.log('ROW IS ' + JSON.stringify(row));
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '80%';
+    this.dialog.open(UpdateMockComponent, dialogConfig);
   }
 
   removeRestMock(row) {
