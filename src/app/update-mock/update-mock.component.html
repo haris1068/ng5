@@ -7,7 +7,7 @@
     <div class="form-group" ng-class="{ 'has-error' : restForm.rPath.$invalid && !restForm.rPath.$pristine }">
       <label for="rPath" class="col-sm-2 control-label">Path</label>
       <div class="col-sm-10">
-        <input type="text" name="rPath" class="form-control" id="rPath" placeholder="Path" value={{myData.reqpath}} required>
+        <input type="text" name="rPath" class="form-control" id="rPath" placeholder="Path" value={{myData.reqpath}} [(ngModel)]="myData.reqpath" required>
         <p ngshow="restForm.rPath.$invalid && !restForm.rPath.$pristine" class="help-block">Path is mandatory.</p>
       </div>
     </div>
@@ -15,22 +15,22 @@
       <label class="col-sm-2 control-label">Verb</label>
       <div class="col-sm-10">
         <label class="radio-inline">
-          <input type="radio" ng-model="myData.verb" value="GET" [checked]=true>GET
+          <input type="radio" name="verb" [checked]="'GET' === myData.verb" (click)="myData.verb = 'GET'">GET
         </label>
         <label class="radio-inline">
-          <input type="radio" ng-model="myData.verb" value="POST">POST
+          <input type="radio" name="verb"  [checked]="'POST' === myData.verb" (click)="myData.verb = 'POST'">POST
         </label>
         <label class="radio-inline">
-          <input type="radio" ng-model="myData.verb" value="PUT">PUT
+          <input type="radio" name="verb" [checked]="'PUT' === myData.verb" (click)="myData.verb = 'PUT'">PUT
         </label>
         <label class="radio-inline">
-          <input type="radio" ng-model="myData.verb" value="DELETE">DELETE
+          <input type="radio" name="verb" [checked]="'DELETE' === myData.verb" (click)="myData.verb = 'DELETE'">DELETE
         </label>
         <label class="radio-inline">
-          <input type="radio" ng-model="myData.verb" value="PATCH">PATCH
+          <input type="radio" name="verb" [checked]="'PATCH' === myData.verb" (click)="myData.verb = 'PATCH'">PATCH
         </label>
         <label class="radio-inline">
-          <input type="radio" ng-model="myData.verb" value="OPTIONS">OPTIONS
+          <input type="radio" name="verb" [checked]="'OPTIONS' === myData.verb" (click)="myData.verb = 'OPTIONS'">OPTIONS
         </label>
       </div>
     </div>

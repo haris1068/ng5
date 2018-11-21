@@ -30,19 +30,34 @@ export class RestmocksComponent implements OnInit {
 
   open(row) {
     console.log('ROW IS ' + JSON.stringify(row));
+    const tempData = {
+      id: row.id,
+      verb: row.verb,
+      reqpath: row.reqpath,
+      headers: row.headers,
+      switches: [],
+      cases: [{
+        'key': 'default',
+        'status': row.cases[0].status,
+        'payload': row.cases[0].payload
+
+      }]
+    };
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '80%';
+    dialogConfig.width = '60%';
     const dialogRef = this.dialog.open(UpdateMockComponent, dialogConfig);
     const instance = dialogRef.componentInstance;
-    instance.myData = row;
+    instance.myData = tempData;
+    // dialogRef.afterClosed()
+    //   .subscribe(row=  this.myData);
   }
 
   removeRestMock(row) {
     if (confirm('This will certainly delete your mock.')) {
       const index = this.myData.indexOf(row);
-      this.http.delete('http://localhost:3000/api/restmock/' + row.id)
+      this.http.delete('http://mock-engine-dev.extnp.national.com.au/api/restmock/' + row.id)
         .subscribe(
           (data: any) => {
             if (index !== -1) {

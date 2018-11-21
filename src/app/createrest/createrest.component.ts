@@ -4,7 +4,7 @@ import {HttpClient, HttpClientModule, HttpParams, HttpHeaders} from '@angular/co
 @Component({
   selector: 'app-createrest',
   templateUrl: './createrest.component.html',
-  styleUrls: ['./css/stylish-portfolio.css', './css/bootstrap.css']
+  styleUrls: ['../css/stylish-portfolio.css', '../css/bootstrap.css']
 })
 
 export class CreaterestComponent implements OnInit {
@@ -49,7 +49,7 @@ export class CreaterestComponent implements OnInit {
         }]
       }
     };
-    this.http.post('http://localhost:3000/api/restmock', req)
+    this.http.post('http://mock-engine-dev.extnp.national.com.au/api/restmock', req)
       .subscribe(
         (data: any) => {
           console.log('DATA IS ' + JSON.stringify(data));
