@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {MatDialog , MatDialogConfig} from '@angular/material';
+import {MatDialog, MatDialogConfig} from '@angular/material';
 import {UpdateMockComponent} from '../update-mock/update-mock.component';
 
 @Component({
@@ -16,6 +16,19 @@ export class RestmocksComponent implements OnInit {
 
   ngOnInit() {
 
+    console.log('GET ALL THE MOCKS');
+    this.http.get('http://mock-engine-dev.extnp.national.com.au/api/restmock?date=' + new Date())
+      .subscribe(
+        (res: any) => {
+          this.myData = res.Items;
+          console.log('res is ', res);
+        },
+        error => {
+          alert('ERROR');
+        });
+  }
+
+  refresh() {
     console.log('GET ALL THE MOCKS');
     this.http.get('http://mock-engine-dev.extnp.national.com.au/api/restmock?date=' + new Date())
       .subscribe(
@@ -50,8 +63,8 @@ export class RestmocksComponent implements OnInit {
     const dialogRef = this.dialog.open(UpdateMockComponent, dialogConfig);
     const instance = dialogRef.componentInstance;
     instance.myData = tempData;
-    // dialogRef.afterClosed()
-    //   .subscribe(row=  this.myData);
+    dialogRef.afterClosed()
+      .subscribe(result => {this.refresh()});
   }
 
   removeRestMock(row) {
