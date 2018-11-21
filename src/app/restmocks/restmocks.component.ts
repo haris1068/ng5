@@ -17,7 +17,7 @@ export class RestmocksComponent implements OnInit {
   ngOnInit() {
 
     console.log('GET ALL THE MOCKS');
-    this.http.get('http://localhost:3000/api/restmock?date=' + new Date())
+    this.http.get('http://mock-engine-dev.extnp.national.com.au/api/restmock?date=' + new Date())
       .subscribe(
         (res: any) => {
           this.myData = res.Items;
@@ -34,7 +34,9 @@ export class RestmocksComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '80%';
-    this.dialog.open(UpdateMockComponent, dialogConfig);
+    const dialogRef = this.dialog.open(UpdateMockComponent, dialogConfig);
+    const instance = dialogRef.componentInstance;
+    instance.myData = row;
   }
 
   removeRestMock(row) {

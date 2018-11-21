@@ -1,3 +1,4 @@
+<div class="my-modal">
 <div class="modal-header">
   <h3 class="modal-title">Rest Mock</h3>
 </div>
@@ -6,7 +7,7 @@
     <div class="form-group" ng-class="{ 'has-error' : restForm.rPath.$invalid && !restForm.rPath.$pristine }">
       <label for="rPath" class="col-sm-2 control-label">Path</label>
       <div class="col-sm-10">
-        <input type="text" name="rPath" class="form-control" id="rPath" placeholder="Path" [(ngModel)]="reqpath" required>
+        <input type="text" name="rPath" class="form-control" id="rPath" placeholder="Path" value={{myData.reqpath}} required>
         <p ngshow="restForm.rPath.$invalid && !restForm.rPath.$pristine" class="help-block">Path is mandatory.</p>
       </div>
     </div>
@@ -14,22 +15,22 @@
       <label class="col-sm-2 control-label">Verb</label>
       <div class="col-sm-10">
         <label class="radio-inline">
-          <input type="radio" ng-model="rpop.verb" value="GET">GET
+          <input type="radio" ng-model="myData.verb" value="GET" [checked]=true>GET
         </label>
         <label class="radio-inline">
-          <input type="radio" ng-model="rpop.verb" value="POST">POST
+          <input type="radio" ng-model="myData.verb" value="POST">POST
         </label>
         <label class="radio-inline">
-          <input type="radio" ng-model="rpop.verb" value="PUT">PUT
+          <input type="radio" ng-model="myData.verb" value="PUT">PUT
         </label>
         <label class="radio-inline">
-          <input type="radio" ng-model="rpop.verb" value="DELETE">DELETE
+          <input type="radio" ng-model="myData.verb" value="DELETE">DELETE
         </label>
         <label class="radio-inline">
-          <input type="radio" ng-model="rpop.verb" value="PATCH">PATCH
+          <input type="radio" ng-model="myData.verb" value="PATCH">PATCH
         </label>
         <label class="radio-inline">
-          <input type="radio" ng-model="rpop.verb" value="OPTIONS">OPTIONS
+          <input type="radio" ng-model="myData.verb" value="OPTIONS">OPTIONS
         </label>
       </div>
     </div>
@@ -37,7 +38,7 @@
     <div class="form-group">
       <label class="col-sm-2 control-label">Headers</label>
       <div class="col-sm-10">
-        <div *ngFor="let header of headers; let i=index" class="row">
+        <div *ngFor="let header of myData.headers; let i=index" class="row">
           <div class="col-sm-5">
             <!--{{header.name}}-{{header.value}}-->
             <input type="text" required placeholder="Header's Name..." class="form-control" name="headersname"
@@ -66,7 +67,7 @@
     <div class="form-group">
       <label class="col-sm-2 control-label">Cases</label>
       <div class="col-sm-10">
-        <div *ngFor="let case of cases" class="well">
+        <div *ngFor="let case of myData.cases" class="well">
           <!--<input type="text" class="form-control" ng-model="case.key" placeholder="Key" ng-show="showRemoveCase(case)" required>-->
           <p></p>
           <select id="" class="form-control" [(ngModel)]="case.status" (ngModelChange)="onChange($event)" name="status"
@@ -167,4 +168,5 @@
 <div class="modal-footer">
   <button class="btn btn-primary" type="button" ng-disabled="restForm.$invalid" (click)="update()">Update</button>
   <input type="button" class="btn btn-warning" value="Cancel" (click)="close()">
+</div>
 </div>

@@ -5,10 +5,10 @@ import {RestmocksComponent} from '../restmocks/restmocks.component';
 @Component({
   selector: 'app-update-mock',
   templateUrl: './update-mock.component.html',
-  styleUrls: ['./update-mock.component.scss']
+  styleUrls: ['./css/stylish-portfolio.css', './css/bootstrap.css']
 })
 export class UpdateMockComponent implements OnInit {
-  myData: any[] = [];
+  myData = {};
   constructor(public dialogRef: MatDialogRef<RestmocksComponent>) { }
 
   ngOnInit() {
@@ -18,7 +18,7 @@ export class UpdateMockComponent implements OnInit {
     this.dialogRef.close();
   }
   update() {
-    alert('UPDATED SUCCESSFULLY');
+    alert('UPDATED SUCCESSFULLY' + JSON.stringify(this.myData));
     this.dialogRef.close();
   }
 
